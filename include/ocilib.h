@@ -1218,6 +1218,7 @@ typedef unsigned int big_uint;
 #define OCI_ENV_THREADED                    1
 #define OCI_ENV_CONTEXT                     2
 #define OCI_ENV_EVENTS                      4
+#define OCI_ENV_FORCE_TERM                  8
 
 /* sessions modes */
 
