@@ -696,7 +696,9 @@ public:
         /** Enable support for multi-threading */
         Threaded  = OCI_ENV_THREADED,
         /** Enable support for events related to subscriptions, HA and AQ notifications */
-        Events = OCI_ENV_EVENTS
+        Events = OCI_ENV_EVENTS,
+        /** call OCITerminate() function on Cleanup */
+        ForceTerminate = OCI_ENV_FORCE_TERM
     };
 
     /**
