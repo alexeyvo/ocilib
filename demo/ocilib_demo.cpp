@@ -1469,4 +1469,3 @@ void test_directpath(void)
         ocout << std::setw(4) << dp.GetRowCount() << otext(" row(s) loaded") << oendl;
     }
 }
-

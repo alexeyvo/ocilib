@@ -115,22 +115,25 @@ void * OCI_MemRealloc
     {
         void *ptr_new = realloc(mem_block, size);
 
-        if (!ptr_new && ptr_mem)
+        if (ptr_new)
         {
-            OCI_MemFree(ptr_mem);
+            big_int size_diff = 0;
+            mem_block = (OCI_MemoryBlock *) ptr_new;
 
-            OCI_ExceptionMemory(ptr_type, size, NULL, NULL);
-        }
-        else
-        {
-            OCI_MemoryBlock * mem_block = (OCI_MemoryBlock *) ptr_new;
-
-            big_int size_diff = (big_int) size - mem_block->size;
+            size_diff = (big_int) size - mem_block->size;
 
             mem_block->type = ptr_type;
             mem_block->size = (unsigned int) size;
 
             OCI_MemUpdateBytes(mem_block->type, size_diff);
+        }
+        else if (ptr_mem)
+        { 
+            OCI_MemFree(ptr_mem);
+
+            OCI_ExceptionMemory(ptr_type, size, NULL, NULL);
+
+            mem_block = NULL;
         }
     }
 
